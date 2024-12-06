@@ -57,5 +57,64 @@
     <a href="#"><i class="fab fa-instagram"></i></a>
 </div>
 
+<script>
+// Fonction de validation du formulaire
+function validateForm() {
+    let valid = true;
+
+    // Réinitialiser les messages d'erreur
+    document.getElementById('email-error').innerHTML = '';
+    document.getElementById('name-error').innerHTML = '';
+    document.getElementById('message-error').innerHTML = '';
+
+    // Récupérer les valeurs des champs
+    const email = document.getElementById('email').value;
+    const name = document.getElementById('name').value;
+    const message = document.getElementById('message').value;
+
+    // Validation de l'email
+    if (!validateEmail(email)) {
+        document.getElementById('email-error').innerHTML = 'Veuillez entrer un email valide.';
+        valid = false;
+    }
+
+    // Validation du nom
+    if (name.trim() === '') {
+        document.getElementById('name-error').innerHTML = 'Le nom ne peut pas être vide.';
+        valid = false;
+    }
+
+    // Validation du message
+    if (message.trim() === '') {
+        document.getElementById('message-error').innerHTML = 'Le message ne peut pas être vide.';
+        valid = false;
+    }
+
+    return valid;
+}
+
+// Fonction de validation de l'email
+function validateEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+}
+</script>
 </body>
 </html>
+Portifollio template example:
+https://fr.wix.com/website-template/view/html/2738?originUrl=https%3A%2F%2Ffr.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblank&tpClick=view_button&esi=e1499ca4-b6ac-4d65-9986-c7a9425e620f
+https://fr.wix.com/website/templates/html/blank
+Accuiel: Presdentation - CV
+
+BTS : -SLAM
+      -SISR
+
+Exparience: Stage /ALternance Enterprise 
+
+Project : tout les Projects Detail de chaque Project
+
+Veille
+
+Contact
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+https://mwilliambarros.wixsite.com/my-site-2
