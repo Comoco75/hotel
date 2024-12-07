@@ -1,120 +1,27 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-</head>
-<body>
- 
-<div class="header">
-    <h1>Entrer en Contact</h1>
-    <p>Nous pouvons garantir la fiabilité, des tarifs bas et, plus important encore, la sécurité et le confort à l'esprit.</p>
-</div>
 
-<div class="contact-container">
-    <div class="contact-item">
-        <h3>Notre Bureau Principal</h3>
-        <p>SoHo 94 Broadway St, New York, NY 1001</p>
-    </div>
-    <div class="contact-item">
-        <h3>Numéro de Téléphone</h3>
-        <p>234-9876-5400</p>
-        <p>888-0123-4567 (sans frais)</p>
-    </div>
-    <div class="contact-item">
-        <h3>Fax</h3>
-        <p>1-234-567-8900</p>
-    </div>
-    <div class="contact-item">
-        <h3>Email</h3>
-        <p>bonjour@theme.com</p>
-    </div>
-</div>
-
-<div class="contact-form-container">
-    <form action="process_form.php" method="post">
-        <div class="form-group">
-            <label for="email">Email :</label>
-            <input type="email" name="email" id="email" placeholder="Enter a valid email address" required>
-        </div>
-        <div class="form-group">
-            <label for="name">Nom :</label>
-            <input type="text" name="name" id="name" placeholder="Enter your Name" required>
-        </div>
-        <div class="form-group">
-            <label for="message">Message :</label>
-            <textarea name="message" id="message" rows="5" placeholder="Enter your message" required></textarea>
-        </div>
-        <button type="submit">Soumettre</button>
-    </form>
-</div>
-
-<div class="social-icons">
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-</div>
-
-<script>
-// Fonction de validation du formulaire
-function validateForm() {
-    let valid = true;
-
-    // Réinitialiser les messages d'erreur
-    document.getElementById('email-error').innerHTML = '';
-    document.getElementById('name-error').innerHTML = '';
-    document.getElementById('message-error').innerHTML = '';
-
-    // Récupérer les valeurs des champs
-    const email = document.getElementById('email').value;
-    const name = document.getElementById('name').value;
-    const message = document.getElementById('message').value;
-
-    // Validation de l'email
-    if (!validateEmail(email)) {
-        document.getElementById('email-error').innerHTML = 'Veuillez entrer un email valide.';
-        valid = false;
-    }
-
-    // Validation du nom
-    if (name.trim() === '') {
-        document.getElementById('name-error').innerHTML = 'Le nom ne peut pas être vide.';
-        valid = false;
-    }
-
-    // Validation du message
-    if (message.trim() === '') {
-        document.getElementById('message-error').innerHTML = 'Le message ne peut pas être vide.';
-        valid = false;
-    }
-
-    return valid;
-}
-
-// Fonction de validation de l'email
-function validateEmail(email) {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailPattern.test(email);
-}
-</script>
-</body>
-</html>
 Portifollio template example:
 https://fr.wix.com/website-template/view/html/2738?originUrl=https%3A%2F%2Ffr.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblank&tpClick=view_button&esi=e1499ca4-b6ac-4d65-9986-c7a9425e620f
 https://fr.wix.com/website/templates/html/blank
 Accuiel: Presdentation - CV
+<?php include("/xampp/htdocs/GitYR/hotel/vue/commun/header.php"); ?>
+    <div class="login-page">
+        <div class="form">
+            <form class="login-form" method="POST" action="Controller/utilisateurController.php">
+                <input type="email"     name="email"    placeholder="Email" required />
+                <input type="password"  name="password" placeholder="Mot de passe" required />
+                <button type="submit"   name="action"   value="connexion">Se connecter</button>
+                <i class="message">Pas encore inscrit ? <a href="index.php?page=inscription">Créez un compte</a></i>
+            </form>
+        </div>
+    </div>
 
-BTS : -SLAM
-      -SISR
+    <!-- Affichage des messages d'erreur ou de succès -->
+        <?php if (isset($_GET['error'])): ?>
+    <?php if ($_GET['error'] == 'missing_fields'): ?>
+        <p style="color:red;">Veuillez entrer votre email et votre mot de passe.</p>
+    <?php elseif ($_GET['error'] == 'invalid_credentials'): ?>
+        <p style="color:red;">Email ou mot de passe incorrect.</p>
+    <?php endif; ?>
+<?php endif; ?>
+<?php include_once("/xampp/htdocs/GitYR/hotel/vue/commun/footer.php"); ?>
 
-Exparience: Stage /ALternance Enterprise 
-
-Project : tout les Projects Detail de chaque Project
-
-Veille
-
-Contact
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-https://mwilliambarros.wixsite.com/my-site-2
