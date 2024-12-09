@@ -1,49 +1,103 @@
-<div class="container my-5">
-    <h1 class="text-center">Contactez-nous</h1>
-    <p class="text-center">Vous avez une question ou un commentaire ? Remplissez le formulaire ci-dessous et nous vous répondrons rapidement.</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+</head>
+<body>
+ 
+<div class="header">
+    <h1>Entrer en Contact</h1>
+    <p>Nous pouvons garantir la fiabilité, des tarifs bas et, plus important encore, la sécurité et le confort à l'esprit.</p>
+</div>
 
-    <?php
-    // Afficher les messages de succès ou d'erreur
-    if (isset($_GET['success']) && $_GET['success'] == '1') {
-        echo "<div class='alert alert-success'>Votre message a été envoyé avec succès !</div>";
-    } elseif (isset($_GET['error']) && $_GET['error'] == '1') {
-        echo "<div class='alert alert-danger'>Une erreur est survenue. Veuillez réessayer.</div>";
-    }
-    ?>
+<div class="contact-container">
+    <div class="contact-item">
+        <h3>Notre Bureau Principal</h3>
+        <p>SoHo 94 Broadway St, New York, NY 1001</p>
+    </div>
+    <div class="contact-item">
+        <h3>Numéro de Téléphone</h3>
+        <p>234-9876-5400</p>
+        <p>888-0123-4567 (sans frais)</p>
+    </div>
+    <div class="contact-item">
+        <h3>Fax</h3>
+        <p>1-234-567-8900</p>
+    </div>
+    <div class="contact-item">
+        <h3>Email</h3>
+        <p>bonjour@theme.com</p>
+    </div>
+</div>
 
-    <form action="../controleur/contactController.php" method="post" class="needs-validation" novalidate>
-        <div class="mb-3">
-            <label for="nom" class="form-label">Nom</label>
-            <input type="text" class="form-control" id="nom" name="nom" required>
-            <div class="invalid-feedback">Veuillez entrer votre nom.</div>
+<div class="contact-form-container">
+    <form action="process_form.php" method="post">
+        <div class="form-group">
+            <label for="email">Email :</label>
+            <input type="email" name="email" id="email" placeholder="Enter a valid email address" required>
         </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Adresse e-mail</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-            <div class="invalid-feedback">Veuillez entrer une adresse e-mail valide.</div>
+        <div class="form-group">
+            <label for="name">Nom :</label>
+            <input type="text" name="name" id="name" placeholder="Enter your Name" required>
         </div>
-        <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-            <div class="invalid-feedback">Veuillez entrer votre message.</div>
+        <div class="form-group">
+            <label for="message">Message :</label>
+            <textarea name="message" id="message" rows="5" placeholder="Enter your message" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <button type="submit">Soumettre</button>
     </form>
 </div>
 
+<div class="social-icons">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+</div>
+
 <script>
-    // Script pour activer la validation du formulaire
-    (function () {
-        'use strict';
-        var forms = document.querySelectorAll('.needs-validation');
-        Array.prototype.slice.call(forms).forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    })();
+// Fonction de validation du formulaire
+function validateForm() {
+    let valid = true;
+
+    // Réinitialiser les messages d'erreur
+    document.getElementById('email-error').innerHTML = '';
+    document.getElementById('name-error').innerHTML = '';
+    document.getElementById('message-error').innerHTML = '';
+
+    // Récupérer les valeurs des champs
+    const email = document.getElementById('email').value;
+    const name = document.getElementById('name').value;
+    const message = document.getElementById('message').value;
+
+    // Validation de l'email
+    if (!validateEmail(email)) {
+        document.getElementById('email-error').innerHTML = 'Veuillez entrer un email valide.';
+        valid = false;
+    }
+
+    // Validation du nom
+    if (name.trim() === '') {
+        document.getElementById('name-error').innerHTML = 'Le nom ne peut pas être vide.';
+        valid = false;
+    }
+
+    // Validation du message
+    if (message.trim() === '') {
+        document.getElementById('message-error').innerHTML = 'Le message ne peut pas être vide.';
+        valid = false;
+    }
+
+    return valid;
+}
+
+// Fonction de validation de l'email
+function validateEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+}
 </script>
+</body>
+</html>
